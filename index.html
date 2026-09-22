@@ -659,44 +659,23 @@ body {
 
 .mensaje-final {
     position: absolute;
-
     top: 6%;
-
     left: 50%;
-
     width: 90%;
-
     max-width: 750px;
-
-    transform:
-        translateX(-50%);
-
+    transform: translateX(-50%);
     color: white;
-
     text-align: center;
-
-    font-size:
-        clamp(
-            24px,
-            6vw,
-            45px
-        );
-
+    font-size: clamp(24px, 6vw, 45px);
     line-height: 1.25;
 
     text-shadow:
-        0 3px 10px
-        rgba(
-            0,
-            0,
-            0,
-            .45
-        );
+        0 2px 4px rgba(0, 0, 0, .65),
+        0 5px 10px rgba(0, 0, 0, .45),
+        0 0 8px rgba(0, 0, 0, .35);
 
     opacity: 0;
-
     z-index: 90;
-
     pointer-events: none;
 
     animation:
@@ -719,7 +698,6 @@ body {
 }
 
 @keyframes aparecerFoto {
-
     from {
         opacity: 0;
 
@@ -738,7 +716,6 @@ body {
 }
 
 @keyframes aparecer {
-
     from {
         opacity: 0;
 
@@ -755,7 +732,6 @@ body {
 }
 
 @keyframes pulsarBoton {
-
     0%,
     100% {
         box-shadow:
@@ -781,7 +757,6 @@ body {
 }
 
 @keyframes respirarSol {
-
     50% {
         transform:
             scale(1.08);
@@ -789,7 +764,6 @@ body {
 }
 
 @keyframes moverNube {
-
     from {
         margin-left: 0;
     }
@@ -803,7 +777,6 @@ body {
 }
 
 @keyframes aparecerFlor {
-
     0% {
         opacity: 0;
 
@@ -830,7 +803,6 @@ body {
 }
 
 @keyframes viento {
-
     0%,
     100% {
         transform:
@@ -846,7 +818,6 @@ body {
 }
 
 @keyframes caerPetalo {
-
     0% {
         opacity: 0;
 
@@ -907,7 +878,6 @@ body {
 }
 
 @keyframes mensajeFinal {
-
     from {
         opacity: 0;
 
@@ -930,7 +900,6 @@ body {
 }
 
 @keyframes latir {
-
     0%,
     100% {
         transform:
@@ -970,10 +939,6 @@ body {
                 38vh,
                 330px
             );
-
-        object-fit: contain;
-
-        background: white;
 
         border-width: 6px;
     }
@@ -1114,16 +1079,6 @@ body {
     }
 }
 
-@media (max-width: 600px) {
-
-    .flor {
-        left: calc(
-            var(--posicion-flor) - 5%
-        ) !important;
-    }
-
-}
-
 </style>
 
 </head>
@@ -1215,36 +1170,28 @@ function crearFlor(
     const espacio = 90 / cantidad;
 
     let izquierda =
-        1 +
-        (posicion * espacio) +
-        (espacio / 2);
+        celular
+            ? -5 +
+              (posicion * espacio) +
+              (espacio / 2)
+            : 1 +
+              (posicion * espacio) +
+              (espacio / 2);
 
     izquierda +=
         (Math.random() * espacio * .08) -
         (espacio * .04);
 
-    if (celular) {
-        izquierda -= 5;
-    }
-
     flor.style.left =
         izquierda + "%";
-
-    flor.style.setProperty(
-        "--posicion-flor",
-        izquierda + "%"
-    );
 
     let altura;
 
     if (grande) {
-
         altura =
             260 +
             Math.random() * 75;
-
     } else {
-
         altura =
             175 +
             Math.random() * 50;
@@ -1253,13 +1200,10 @@ function crearFlor(
     let escala;
 
     if (grande) {
-
         escala =
             .95 +
             Math.random() * .15;
-
     } else {
-
         escala =
             .62 +
             Math.random() * .08;
