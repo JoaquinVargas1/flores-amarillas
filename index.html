@@ -698,6 +698,7 @@ body {
 }
 
 @keyframes aparecerFoto {
+
     from {
         opacity: 0;
 
@@ -716,6 +717,7 @@ body {
 }
 
 @keyframes aparecer {
+
     from {
         opacity: 0;
 
@@ -732,6 +734,7 @@ body {
 }
 
 @keyframes pulsarBoton {
+
     0%,
     100% {
         box-shadow:
@@ -757,6 +760,7 @@ body {
 }
 
 @keyframes respirarSol {
+
     50% {
         transform:
             scale(1.08);
@@ -764,6 +768,7 @@ body {
 }
 
 @keyframes moverNube {
+
     from {
         margin-left: 0;
     }
@@ -777,6 +782,7 @@ body {
 }
 
 @keyframes aparecerFlor {
+
     0% {
         opacity: 0;
 
@@ -803,6 +809,7 @@ body {
 }
 
 @keyframes viento {
+
     0%,
     100% {
         transform:
@@ -818,6 +825,7 @@ body {
 }
 
 @keyframes caerPetalo {
+
     0% {
         opacity: 0;
 
@@ -878,6 +886,7 @@ body {
 }
 
 @keyframes mensajeFinal {
+
     from {
         opacity: 0;
 
@@ -900,6 +909,7 @@ body {
 }
 
 @keyframes latir {
+
     0%,
     100% {
         transform:
@@ -939,6 +949,10 @@ body {
                 38vh,
                 330px
             );
+
+        object-fit: contain;
+
+        background: white;
 
         border-width: 6px;
     }
@@ -1079,6 +1093,16 @@ body {
     }
 }
 
+@media (max-width: 600px) {
+
+    .flor {
+        left: calc(
+            var(--posicion-flor) - 5%
+        ) !important;
+    }
+
+}
+
 </style>
 
 </head>
@@ -1170,28 +1194,36 @@ function crearFlor(
     const espacio = 90 / cantidad;
 
     let izquierda =
-        celular
-            ? -5 +
-              (posicion * espacio) +
-              (espacio / 2)
-            : 1 +
-              (posicion * espacio) +
-              (espacio / 2);
+        1 +
+        (posicion * espacio) +
+        (espacio / 2);
 
     izquierda +=
         (Math.random() * espacio * .08) -
         (espacio * .04);
 
+    if (celular) {
+        izquierda -= 5;
+    }
+
     flor.style.left =
         izquierda + "%";
+
+    flor.style.setProperty(
+        "--posicion-flor",
+        izquierda + "%"
+    );
 
     let altura;
 
     if (grande) {
+
         altura =
             260 +
             Math.random() * 75;
+
     } else {
+
         altura =
             175 +
             Math.random() * 50;
@@ -1200,10 +1232,13 @@ function crearFlor(
     let escala;
 
     if (grande) {
+
         escala =
             .95 +
             Math.random() * .15;
+
     } else {
+
         escala =
             .62 +
             Math.random() * .08;
